@@ -250,28 +250,7 @@ usage() {
 }
 
 ## 更新qinglong
-update_qinglong() {
-
-    :<<!
-    local no_restart="$1"
-    echo -e "--------------------------------------------------------------\n"
-    [ -f $dir_root/package.json ] && ql_depend_old=$(cat $dir_root/package.json)
-    reset_romote_url ${dir_root} "${github_proxy_url}https://github.com/noevers/qi66.git"
-    git_pull_scripts $dir_root
-
-    if [[ $exit_status -eq 0 ]]; then
-        echo -e "\n更新$dir_root成功...\n"
-        cp -f $file_config_sample $dir_config/config.sample.sh
-        detect_config_version
-        update_depend
-
-        [ -f $dir_root/package.json ] && ql_depend_new=$(cat $dir_root/package.json)
-        [[ "$ql_depend_old" != "$ql_depend_new" ]] && npm_install_2 $dir_root
-    else
-        echo -e "\n更新$dir_root失败，请检查原因...\n"
-    fi
-    !
-    
+update_qinglong() {    
     local url="${github_proxy_url}https://github.com/noevers/qi66-static.git"
     if [ -d ${ql_static_repo}/.git ]; then
         reset_romote_url ${ql_static_repo} ${url}
