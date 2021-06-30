@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import config from '../config';
 import jwt from 'jsonwebtoken';
 import { createRandomString } from '../config/util';
+import crypto from 'crypto';
 const route = Router();
 
 export default (app: Router) => {
